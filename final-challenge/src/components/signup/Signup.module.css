@@ -1,0 +1,5 @@
+.signupInputField {
+    display: flex;
+    flex-direction: column;
+    background-image: url(/final-challenge/src/assets/background.png);
+}
