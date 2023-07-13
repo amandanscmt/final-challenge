@@ -1,5 +1,24 @@
 .signupInputField {
-    display: flex;
-    flex-direction: column;
-    background-image: url(/final-challenge/src/assets/background.png);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 1.5rem;
+}
+
+.signupInputField p {
+  color: var(--colors-white);
+}
+
+.googleButton {
+  display: flex;
+  width: 3.5rem;
+  background-color: var(--colors-white);
+  padding: 1rem 1rem;
+  text-align: center;
+  border-radius: 0.7rem;
+}
+
+.googleIcon {
+  text-align: center;
 }

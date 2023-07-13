@@ -1,40 +1,67 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { auth } from "../../config/firebase-config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Link, redirect } from "react-router-dom";
+import { auth, provider } from "../../config/firebase-config";
+import {
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 
-import classes from './Signup.module.css'
+import classes from "./Signup.module.css";
+import InputCard from "../cards/input-card/InputCard";
+import google from "../../assets/google.svg";
 
 const Signup = () => {
-  const [signupEmail, setSignupEmail] = useState("");
-  const [signupPassword, setSignupPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const signupHandler = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, signupEmail, signupPassword);
-      console.log("Signed up!");
-    } catch (error) {
-      console.log("Failed to sign up", error.message);
-    }
-  };
+  // Register
+  const signupEmailHandler = () =>
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("Registered!");
+        redirect("/");
+      })
+      .catch((error) => {
+        console.log("Failed to register", error.message);
+      });
+
+  const signinGoogleHandler = () =>
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        const user = result.user;
+      })
+      .catch((error) => {
+        console.log("Failed to sign in", error.message);
+      });
 
   return (
-    <div className={classes.signupInputField}>
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setSignupEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setSignupPassword(e.target.value)}
-        required
-      />
-      <button onClick={signupHandler}>Sign up</button>
-      <p>Already have an account? <Link to={"/signin"}>Sign in!</Link></p> 
-    </div>
+    <InputCard>
+      <div className={classes.signupInputField}>
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button onClick={signupEmailHandler}>Sign up</button>
+        <button className={classes.googleButton} onClick={signinGoogleHandler}>
+          <img className={classes.googleIcon} src={google} />
+        </button>
+        <p>
+          Already have an account? <Link to={"/signin"}>Sign in!</Link>
+        </p>
+      </div>
+    </InputCard>
   );
 };
 

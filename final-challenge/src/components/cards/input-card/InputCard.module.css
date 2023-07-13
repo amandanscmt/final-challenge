@@ -1,0 +1,26 @@
+.inputCard {
+  display: flex;
+  background-image: url(/src/assets/background.png);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.cardTitle {
+  font-family: var(--font-principal);
+  font-weight: 700;
+  color: var(--colors-white);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.cardTitle h1 {
+  font-size: 3rem;
+}
+
+.cardTitle h2 {
+  font-size: 1rem;
+  color: var(--colors-white);
+}
