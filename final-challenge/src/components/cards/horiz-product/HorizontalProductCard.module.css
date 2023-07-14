@@ -1,7 +1,6 @@
 .horizCard {
-  margin: 1rem;
   display: flex;
-  width: 80%;
+  height: 100%;
   border-radius: 1rem;
   align-items: center;
   background-color: var(--colors-white);
@@ -17,6 +16,7 @@
 }
 
 .horizCardText h1 {
+  color: var(--colors-default);
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }

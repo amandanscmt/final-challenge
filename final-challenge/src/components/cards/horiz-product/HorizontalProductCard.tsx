@@ -1,24 +1,27 @@
-import { Link } from 'react-router-dom'
-import productImg from '../../../assets/image1.png'
+import { Link } from "react-router-dom";
+import productImg from "../../../assets/image1.png";
 
-import classes from './HorizontalProductCard.module.css'
+import classes from "./HorizontalProductCard.module.css";
 
 interface ProductTitle {
-    productTitle: string
+  id: number;
+  productTitle: string;
 }
 
 const HorizProductCard = (props: ProductTitle) => {
-    return (
-        <div className={classes.horizCard}>
+  return (
+    <Link to={`/product-detail/${props.id}`}>
+      <div className={classes.horizCard}>
         <div className={classes.horizCardText}>
-            <h1>{props.productTitle}</h1>
-            <Link to={'/product-detail'}>Shop now</Link>
+          <h1>{props.productTitle}</h1>
+          <Link to={"/product-detail"}>Shop now</Link>
         </div>
         <div className={classes.horizCardImg}>
-            <img src= {productImg} />
+          <img src={productImg} />
         </div>
-        </div>
-    )
-}
+      </div>
+    </Link>
+  );
+};
 
-export default HorizProductCard
+export default HorizProductCard;
