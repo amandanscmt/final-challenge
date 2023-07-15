@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import axios from "axios";
 
-import HorizProductCard from "../cards/horiz-product/HorizontalProductCard";
-import FilterCarousel from "./filter-carousel/FilterCarousel";
+import classes from "./FilterCarousel.module.css";
 
-const FirstCarousel = () => {
+const FilterCarousel = () => {
   interface Review {
     user: string;
     description: string;
@@ -42,36 +41,42 @@ const FirstCarousel = () => {
     void getData();
   }, []);
 
-  return (
-    <>
-      <FilterCarousel />
+  const filterHandler = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    products.map()
+  };
 
+  return (
+    <div className={classes.filterCarouselContainer}>
       <Splide
-        options={{ arrows: false, pagination: false, gap: "1rem" }}
-        type="loop"
-        aria-label="Products"
+        options={{
+          perPage: 3,
+          rewind: true,
+          gap: "1rem",
+          arrows: false,
+          pagination: false,
+        }}
       >
         <SplideSlide>
-          <HorizProductCard
-            id={products[0]?.id}
-            productTitle={products[0]?.name}
-          />
+          <button
+            onClick={filterHandler}
+            className={classes.filterCarouselButton}
+          >
+            Headphone
+          </button>
         </SplideSlide>
         <SplideSlide>
-          <HorizProductCard
-            id={products[1]?.id}
-            productTitle={products[1]?.name}
-          />
+          <button className={classes.filterCarouselButton}>Headsets</button>
         </SplideSlide>
         <SplideSlide>
-          <HorizProductCard
-            id={products[2]?.id}
-            productTitle={products[2]?.name}
-          />
+          <button className={classes.filterCarouselButton}>Earpads</button>
+        </SplideSlide>
+        <SplideSlide>
+          <button className={classes.filterCarouselButton}>Headband</button>
         </SplideSlide>
       </Splide>
-    </>
+    </div>
   );
 };
 
-export default FirstCarousel;
+export default FilterCarousel;

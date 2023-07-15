@@ -1,0 +1,32 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.productDetailSection {
+  margin: 1.5rem 1rem;
+  width: 60%;
+}
+
+.productPrice {
+  font-weight: 700;
+  color: var(--colors-primary);
+}
+
+.productName {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+
+.tabBar a {
+  margin: 1rem;
+  color: var(--colors-default);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.tabBar a:focus-visible {
+  border: 1rem;
+}

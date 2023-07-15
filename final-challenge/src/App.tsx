@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import Signin from "./components/signin/Signin";
 import Signup from "./components/signup/Signup";
+import ProductDetail from "./components/product-detail/ProductDetail";
 
 import './index.css';
 
@@ -18,6 +19,10 @@ const SignupPage = () => {
   return <Signup />;
 };
 
+const ProductDetailPage = () => {
+  return <ProductDetail />
+}
+
 function App() {
   return (
     <>
@@ -26,6 +31,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SigninPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/product-detail/:id" element={<ProductDetailPage />} />
         </Routes>
       </BrowserRouter>
     </>

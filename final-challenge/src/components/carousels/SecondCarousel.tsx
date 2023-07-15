@@ -43,7 +43,7 @@ const SecondCarousel = () => {
 
   return (
     <Splide
-      options={{ perPage: 2, rewind: true }}
+      options={{ perPage: 2, rewind: true, arrows: false, pagination: false }}
       aria-label="Featured Products"
     >
       <SplideSlide>
