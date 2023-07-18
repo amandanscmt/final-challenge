@@ -1,0 +1,76 @@
+
+
+.filterButtonContainer {
+  display: flex;
+}
+
+.filterButton {
+  display: flex;
+  justify-content: center;
+  background-color: var(--colors-white);
+  color: var(--colors-default);
+  border-color: var(--colors-grey-light-2);
+  border-width: 0.2rem;
+}
+
+.filterIcon {
+  margin-right: 0.5rem;
+}
+
+.bottomsheet h1,
+.bottomsheet p {
+  margin: 1rem;
+}
+
+.categoryFilter {
+  margin: 1rem;
+}
+
+.radioCategory {
+  display: flex;
+  color: var(--colors-grey-dark-1);
+  border-radius: 1rem;
+  padding: 0.2rem;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.radioCategory:has(input:checked) {
+  background-color: var(--colors-primary);
+  color: var(--colors-white);
+}
+
+.radioCategory input {
+  display: none;
+}
+
+
+.popularityFilter {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0.5rem;
+}
+
+.radioPopularity {
+  color: var(--colors-default);
+  border: 0.1rem solid var(--colors-grey-dark-1);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.radioPopularity:has(input:checked) {
+  background-color: var(--colors-primary);
+  color: var(--colors-white);
+  border: 0.1rem solid var(--colors-primary);
+}
+
+.radioPopularity input {
+  display: none;
+}
+
+.applyFilterButton {
+  display: flex;
+  margin: 1rem;
+}

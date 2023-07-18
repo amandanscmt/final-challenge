@@ -1,0 +1,22 @@
+.filterCarouselContainer {
+    margin-bottom: 1rem;
+  }
+  
+  .checkboxFilter {
+    display: flex;
+    color: var(--colors-grey-dark-1);
+    border-radius: 1rem;
+    padding: 0.2rem;
+    cursor: pointer;
+    justify-content: center;
+  }
+  
+  .checkboxFilter:has(input:checked) {
+    background-color: var(--colors-primary);
+    color: var(--colors-white);
+  }
+  
+  .checkboxFilter input {
+    display: none;
+  }
+  

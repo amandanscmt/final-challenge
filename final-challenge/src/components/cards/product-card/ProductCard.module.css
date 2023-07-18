@@ -1,11 +1,16 @@
 .productCard {
-    width: 70%;
-    height: 100%;
+    width: 80%;
+    height: 85%;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     background-color: var(--colors-white);
+    padding: 1rem 0.5rem;
     border-radius: 1rem;
-    padding: 1.3rem;
+}
+
+.productTitle {
+    font-size: 0.9rem;
 }
 
 .productImg {
@@ -13,6 +18,7 @@
 }
 
 .productPrice {
+    margin-top: 0.4rem;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }

@@ -24,14 +24,14 @@ const SecondCarousel = () => {
     reviews: Review[];
   }
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [product, setProduct] = useState<Product[]>([]);
 
   const getData = async () => {
     try {
       const response = await axios.get<Product[]>(
         "https://run.mocky.io/v3/8868b735-ec37-4eb5-8250-37cc1b3c974c"
       );
-      setProducts(response.data);
+      setProduct(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -48,27 +48,27 @@ const SecondCarousel = () => {
     >
       <SplideSlide>
         <ProductCard
-          key={products[0]?.id}
-          productTitle={products[0]?.name}
-          productPrice={products[0]?.price}
+          key={product[0]?.id}
+          productTitle={product[0]?.name}
+          productPrice={product[0]?.price}
         />
       </SplideSlide>
       <SplideSlide>
         <ProductCard
-          productTitle={products[1]?.name}
-          productPrice={products[1]?.price}
+          productTitle={product[1]?.name}
+          productPrice={product[1]?.price}
         />
       </SplideSlide>
       <SplideSlide>
         <ProductCard
-          productTitle={products[2]?.name}
-          productPrice={products[2]?.price}
+          productTitle={product[2]?.name}
+          productPrice={product[2]?.price}
         />
       </SplideSlide>
       <SplideSlide>
         <ProductCard
-          productTitle={products[3]?.name}
-          productPrice={products[3]?.price}
+          productTitle={product[3]?.name}
+          productPrice={product[3]?.price}
         />
       </SplideSlide>
     </Splide>

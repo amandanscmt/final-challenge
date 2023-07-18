@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import classes from "./Home.module.css";
 import "@splidejs/react-splide/css";
 import "../../index.css";
+
 import logo from "../../assets/logo.svg";
 
 import FirstCarousel from "../carousels/FirstCarousel";
@@ -19,13 +20,15 @@ const Home: React.FC = () => {
         <h2>Hi, {auth.name}.</h2>
         <h1>What are you looking for today?</h1>
       </div>
-      <div className={classes.searchBar}>
-        <input
-          type="text"
-          className={classes.searchProducts}
-          placeholder="Search headphone"
-        />
-      </div>
+      <Link to={"/search"}>
+        <div className={classes.searchBar}>
+          <input
+            type="text"
+            className={classes.searchProducts}
+            placeholder="Search headphone"
+          />
+        </div>
+      </Link>
       <section className={classes.productSection}>
         <FirstCarousel />
         <div className={classes.featuredBar}>

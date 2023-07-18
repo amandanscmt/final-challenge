@@ -1,0 +1,48 @@
+.searchBar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.searchProducts {
+  width: 80%;
+}
+
+.title {
+    margin: 2rem 0 0 1rem;
+}
+
+.productCard {
+  display: flex;
+  padding: 1rem;
+}
+
+.productImg {
+  background-color: var(--colors-grey-light-1);
+  width: 15%;
+  height: 15%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-right: 0.5rem;
+}
+
+.productText {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ratingSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ratingText {
+  display: flex;
+  align-items: flex-end;
+}
+
+.ratingText p {
+  margin-right: 1rem;
+}

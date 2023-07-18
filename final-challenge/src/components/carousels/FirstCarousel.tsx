@@ -3,7 +3,8 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import axios from "axios";
 
 import HorizProductCard from "../cards/horiz-product/HorizontalProductCard";
-import FilterCarousel from "./filter-carousel/FilterCarousel";
+
+import classes from "./FirstCarousel.module.css";
 
 const FirstCarousel = () => {
   interface Review {
@@ -25,14 +26,18 @@ const FirstCarousel = () => {
     reviews: Review[];
   }
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [product, setProduct] = useState<Product[]>([]);
+  const [category, setCategory] = useState("Headphones");
+  const filteredCategory = product.filter(
+    (product) => product.category === category
+  );
 
   const getData = async () => {
     try {
       const response = await axios.get<Product[]>(
         "https://run.mocky.io/v3/8868b735-ec37-4eb5-8250-37cc1b3c974c"
       );
-      setProducts(response.data);
+      setProduct(response.data);
     } catch (error) {
       console.error(error.message);
     }
@@ -44,32 +49,81 @@ const FirstCarousel = () => {
 
   return (
     <>
-      <FilterCarousel />
-
-      <Splide
-        options={{ arrows: false, pagination: false, gap: "1rem" }}
-        type="loop"
-        aria-label="Products"
-      >
-        <SplideSlide>
-          <HorizProductCard
-            id={products[0]?.id}
-            productTitle={products[0]?.name}
-          />
-        </SplideSlide>
-        <SplideSlide>
-          <HorizProductCard
-            id={products[1]?.id}
-            productTitle={products[1]?.name}
-          />
-        </SplideSlide>
-        <SplideSlide>
-          <HorizProductCard
-            id={products[2]?.id}
-            productTitle={products[2]?.name}
-          />
-        </SplideSlide>
-      </Splide>
+      <div className={classes.filterCarouselContainer}>
+        <Splide
+          options={{
+            perPage: 3,
+            rewind: true,
+            gap: "1rem",
+            arrows: false,
+            pagination: false,
+          }}
+        >
+          <SplideSlide>
+            <label className={classes.checkboxFilter}>
+              Headphones
+              <input
+                type="radio"
+                value="Headphones"
+                id="headphones"
+                name="categoryfilter"
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </label>
+          </SplideSlide>
+          <SplideSlide>
+            <label className={classes.checkboxFilter}>
+              Headsets
+              <input
+                type="radio"
+                value="Headsets"
+                id="headset"
+                name="categoryfilter"
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </label>
+          </SplideSlide>
+          <SplideSlide>
+            <label className={classes.checkboxFilter}>
+              Earpads
+              <input
+                type="radio"
+                value="Earpads"
+                id="earpads"
+                name="categoryfilter"
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </label>
+          </SplideSlide>
+          <SplideSlide>
+            <label className={classes.checkboxFilter}>
+              Headbands
+              <input
+                type="radio"
+                value="Headbands"
+                id="headbands"
+                name="categoryfilter"
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </label>
+          </SplideSlide>
+        </Splide>
+      </div>
+      {category.length === 0 ? (
+        <h1>No products avaliable!</h1>
+      ) : (
+        <Splide
+          options={{ arrows: false, pagination: false, gap: "1rem" }}
+          type="loop"
+          aria-label="Products"
+        >
+          {filteredCategory.map((product) => (
+            <SplideSlide>
+              <HorizProductCard id={product.id} productTitle={product.name} />
+            </SplideSlide>
+          ))}
+        </Splide>
+      )}
     </>
   );
 };

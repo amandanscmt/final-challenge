@@ -14,7 +14,7 @@ const ProductCard = (props: ProductCard) => {
       <img src={productImg1} />
       </div>
     <div className={classes.productCardText}>
-      <p>{props.productTitle}</p>
+      <p className={classes.productTitle}>{props.productTitle}</p>
       <p className={classes.productPrice}>{props.productPrice}</p>
     </div>
     </div>
