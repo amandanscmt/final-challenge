@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import classes from "./ProductDetail.module.css";
+import cartIcon from "../../assets/shopping-cart.svg";
 
 import ProductDetailCarousel from "../carousels/product-detail-carousel/ProductDetailCarousel";
 import ReviewsCard from "../cards/reviews-card/ReviewsCard";
 import SecondCarousel from "../carousels/SecondCarousel";
 import NavBar from "../navbar/NavBar";
+import { useCart } from "../context/CartContext";
 
 const ProductDetail = () => {
   interface Review {
@@ -29,8 +31,12 @@ const ProductDetail = () => {
     reviews: Review[];
   }
 
-  const [product, setProduct] = useState<Product[] | null>([]);
+  const [product, setProduct] = useState<Product[]>([]);
   const params = useParams<{ id: string }>();
+
+  const { getItemQt, increaseCartQt } = useCart();
+  const quantity = getItemQt(product.id);
+  console.log(quantity);
 
   const getData = async () => {
     try {
@@ -58,7 +64,7 @@ const ProductDetail = () => {
 
   return (
     <div className={classes.productDetailPage}>
-      <NavBar />
+      <NavBar icon={cartIcon} link={"/cart"} />
       <div className={classes.productDetailSection}>
         <p className={classes.productPrice}>{product?.price}</p>
         <p className={classes.productName}>{product?.name}</p>
@@ -109,26 +115,16 @@ const ProductDetail = () => {
 
       {active === "features" && (
         <div className={classes.featuresTab}>
-          <h1>Highly Detailed Audio</h1>
-          <p>
-            The speaker unit contains a diaphragm that is precision-grown from
-            NAC Audio bio-cellulose, making it stiffer, lighter and stronger
-            than regular PET speaker units, and allowing the sound-producing
-            diaphragm to vibrate without the levels of distortion found in other
-            speakers.
-          </p>
-          <p>
-            The speaker unit contains a diaphragm that is precision-grown from
-            NAC Audio bio-cellulose, making it stiffer, lighter and stronger
-            than regular PET speaker units, and allowing the sound-producing
-            diaphragm to vibrate without the levels of distortion found in other
-            speakers.
-          </p>
+          <p>{product?.description}</p>
         </div>
       )}
-
       <span className={classes.cartButtonSection}>
-        <button className={classes.cartButton}>Add to cart</button>
+        <button
+          onClick={() => increaseCartQt(product.id)}
+          className={classes.cartButton}
+        >
+          Add to cart
+        </button>
       </span>
     </div>
   );

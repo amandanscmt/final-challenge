@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
-import classes from './NavBar.module.css'
+import classes from "./NavBar.module.css";
 
 import backIcon from "../../assets/chevron-left.svg";
-import cartIcon from "../../assets/shopping-cart.svg";
 
 interface NavBar {
-    title?: string
+  title?: string;
+  icon: string
+  link?: string
 }
 
 const NavBar = (props: NavBar) => {
@@ -17,7 +18,7 @@ const NavBar = (props: NavBar) => {
         <img src={backIcon} />
       </Link>
       <h1>{props.title}</h1>
-      <img src={cartIcon} />
+      <Link to={props.link}><img src={props.icon} /></Link>
     </div>
   );
 };

@@ -65,11 +65,10 @@
   margin: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
 }
 
-.featuresTab h1 {
-  font-size: 1.3rem;
+.featuresTab p {
+  margin-top: 1rem;
 }
 
 .cartButtonSection {

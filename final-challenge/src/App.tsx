@@ -1,13 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartProvider } from "./components/context/CartContext";
 
 import Home from "./components/home/Home";
 import Signin from "./components/signin/Signin";
 import Signup from "./components/signup/Signup";
 import ProductDetail from "./components/product-detail/ProductDetail";
 import SeeAll from "./components/see-all/SeeAll";
-import Search from './components/search/Search'
+import Search from "./components/search/Search";
+import Cart from './components/cart/Cart';
 
-import './index.css';
+import "./index.css";
 
 const HomePage = () => {
   return <Home />;
@@ -22,20 +24,24 @@ const SignupPage = () => {
 };
 
 const ProductDetailPage = () => {
-  return <ProductDetail />
-}
+  return <ProductDetail />;
+};
 
 const SeeAllPage = () => {
-  return <SeeAll />
-}
+  return <SeeAll />;
+};
 
 const SearchPage = () => {
-  return <Search />
+  return <Search />;
+};
+
+const CartPage = () => {
+  return <Cart />
 }
 
 function App() {
   return (
-    <>
+    <CartProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -44,9 +50,10 @@ function App() {
           <Route path="/product-detail/:id" element={<ProductDetailPage />} />
           <Route path="/see-all" element={<SeeAllPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </CartProvider>
   );
 }
 

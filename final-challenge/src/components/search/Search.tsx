@@ -7,6 +7,7 @@ import NavBar from "../navbar/NavBar";
 import productImg from "../../assets/image1.png";
 import ratingIcon from "../../assets/star-filled.svg";
 import moreIcon from "../../assets/more-vertical.svg";
+import cartIcon from "../../assets/shopping-cart.svg";
 
 const Search = () => {
   interface Review {
@@ -51,7 +52,7 @@ const Search = () => {
 
   return (
     <>
-      <NavBar title="Search" />
+      <NavBar icon={cartIcon} link={"/cart"} title="Search" />
       <div className={classes.searchBar}>
         <input
           type="text"

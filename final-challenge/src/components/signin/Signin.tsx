@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, provider } from "../../config/firebase-config";
 import {
   signInWithEmailAndPassword,
@@ -14,6 +14,7 @@ import google from "../../assets/google.svg";
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   // Login
   const signinEmailHandler = () =>
@@ -21,7 +22,7 @@ const Signin = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("Signed in!");
-        redirect("/");
+        navigate("/")
       })
       .catch((error) => {
         console.log("Failed to sign in", error.message);
@@ -33,9 +34,10 @@ const Signin = () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
         const user = result.user;
+        navigate("/")
       })
       .catch((error) => {
-        console.log("Failed to sign in", error.message);
+        console.log("Failed to sign in", error.message); 
       });
 
   return (

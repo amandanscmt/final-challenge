@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import axios from "axios";
 
-import classes from "./SeeAll.module.css";
-import cartIcon from "../../assets/shopping-cart.svg";
-import "react-spring-bottom-sheet-updated/dist/style.css";
-
-import BottomSheetFilter from "../bottomsheet/BottomSheetFilter";
-
 import NavBar from "../navbar/NavBar";
-import SeeAllCard from "../cards/see-all-card/SeeAllCard";
+import CartItemCard from "../cards/cart-item-card/CartItemCard";
+import trashIcon from "../../assets/trash-2.svg";
 
-const SeeAll = () => {
+const Cart = () => {
   interface Review {
     user: string;
     description: string;
@@ -32,6 +29,10 @@ const SeeAll = () => {
 
   const [product, setProduct] = useState<Product[]>([]);
 
+  const { getItemQt, increaseCartQt } = useCart();
+  const quantity = getItemQt(product.id);
+  console.log(quantity);
+
   const getData = async () => {
     try {
       const response = await axios.get<Product[]>(
@@ -49,25 +50,17 @@ const SeeAll = () => {
 
   return (
     <>
-      <NavBar icon={cartIcon} link={"/cart"} />
-      <div className={classes.seeAllHeader}>
-        <p>Featured products</p>
-        <h1>See all products</h1>
-        <BottomSheetFilter />
-      </div>
-      <div className={classes.allProductsSection}>
-        {product.map((product) => (
-          <SeeAllCard
-            id={product.id}
-            name={product.name}
-            price={product.price}
-            rating={product.rating}
-            reviews={product.reviews}
-          />
-        ))}
-      </div>
+      <NavBar icon={trashIcon} title="Shopping Cart" />
+      {product.map((product) => (
+        <CartItemCard
+          name={product.name}
+          price={product.price}
+          id={product.id}
+          quantity={quantity}
+        />
+      ))}
     </>
   );
 };
 
-export default SeeAll;
+export default Cart;

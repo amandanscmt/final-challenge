@@ -15,42 +15,5 @@
 
 .allProductsSection h2 {
   font-size: 1rem;
+  font-weight: 400;
 }
-
-.productContainer {
-  display: flex;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  background-color: var(--colors-white);
-  width: 40%;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  border-radius: 1rem;
-}
-
-.productImg {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-
-.ratingSection {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.ratingNumber {
-  display: flex;
-  align-items: flex-start;
-}
-
-.ratingNumber img {
-  margin-right: 0.2rem;
-}
-
-

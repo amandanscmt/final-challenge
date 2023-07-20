@@ -1,5 +1,7 @@
+import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../config/firebase-config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import classes from "./Home.module.css";
 import "@splidejs/react-splide/css";
@@ -11,6 +13,19 @@ import FirstCarousel from "../carousels/FirstCarousel";
 import SecondCarousel from "../carousels/SecondCarousel";
 
 const Home: React.FC = () => {
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("uid", uid);
+      } else {
+        navigate("/signin");
+      }
+    });
+  }, []);
+
   return (
     <>
       <div className={classes.navBar}>

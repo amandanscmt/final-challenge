@@ -28,6 +28,19 @@ const BottomSheetFilter = () => {
   }
 
   const [product, setProduct] = useState<Product[]>([]);
+  const [category, setCategory] = useState("");
+
+  const maxRating = product.reduce((max, product) => {
+    return product.rating > max ? product.rating : max;
+  }, 0);
+  console.log(maxRating)
+
+  const maxPrice = product.reduce((max, product) => {
+    const price = parseFloat(product.price);
+    return price > max ? price : max
+  }, 0)
+  console.log(maxPrice)
+
   const [open, setOpen] = useState(false);
 
   const getData = async () => {
@@ -44,6 +57,16 @@ const BottomSheetFilter = () => {
   useEffect(() => {
     void getData();
   }, []);
+
+  const filterHandler = () => {
+    let filteredProducts = product;
+    filteredProducts = product.filter((product) => product.category === category);
+    
+    filteredProducts = product.filter((product) => product.rating === (maxRating));
+    
+    filteredProducts = product.filter((product) => parseFloat(product.price) === (maxPrice));
+    console.log(filteredProducts)
+  };
 
   const onDismiss = () => {
     setOpen(false);
@@ -81,6 +104,7 @@ const BottomSheetFilter = () => {
                     value="Headphones"
                     id="headphones"
                     name="categoryfilter"
+                    onChange={(e) => setCategory(e.target.value)}
                   />
                 </label>
               </SplideSlide>
@@ -92,6 +116,7 @@ const BottomSheetFilter = () => {
                     value="Headsets"
                     id="headset"
                     name="categoryfilter"
+                    onChange={(e) => setCategory(e.target.value)}
                   />
                 </label>
               </SplideSlide>
@@ -103,6 +128,7 @@ const BottomSheetFilter = () => {
                     value="Earpads"
                     id="earpads"
                     name="categoryfilter"
+                    onChange={(e) => setCategory(e.target.value)}
                   />
                 </label>
               </SplideSlide>
@@ -114,6 +140,7 @@ const BottomSheetFilter = () => {
                     value="Headbands"
                     id="headbands"
                     name="categoryfilter"
+                    onChange={(e) => setCategory(e.target.value)}
                   />
                 </label>
               </SplideSlide>
@@ -128,15 +155,28 @@ const BottomSheetFilter = () => {
                 value="Popularity"
                 id="popularity"
                 name="filter"
+                onChange={(e) => (e.target.value)}
               />
             </label>
             <label className={classes.radioPopularity}>
               Newest
-              <input type="radio" value="Newest" id="newest" name="filter" />
+              <input
+                type="radio"
+                value="Newest"
+                id="newest"
+                name="filter"
+                onChange={(e) => setSortby(e.target.value)}
+              />
             </label>
             <label className={classes.radioPopularity}>
               Oldest
-              <input type="radio" value="Oldest" id="oldest" name="filter" />
+              <input
+                type="radio"
+                value="Oldest"
+                id="oldest"
+                name="filter"
+                onChange={(e) => setSortby(e.target.value)}
+              />
             </label>
             <label className={classes.radioPopularity}>
               High Price
@@ -145,6 +185,7 @@ const BottomSheetFilter = () => {
                 value="High Price"
                 id="highprice"
                 name="filter"
+                onChange={(e) => (e.target.value)}
               />
             </label>
             <label className={classes.radioPopularity}>
@@ -154,15 +195,22 @@ const BottomSheetFilter = () => {
                 value="Low Price"
                 id="lowprice"
                 name="filter"
+                onChange={(e) => setSortby(e.target.value)}
               />
             </label>
             <label className={classes.radioPopularity}>
               Review
-              <input type="radio" value="Review" id="review" name="filter" />
+              <input
+                type="radio"
+                value="Review"
+                id="review"
+                name="filter"
+                onChange={(e) => setSortby(e.target.value)}
+              />
             </label>
           </div>
           <span className={classes.applyFilterButton}>
-            <button>Apply filter</button>
+            <button onClick={filterHandler}>Apply filter</button>
           </span>
         </div>
       </BottomSheet>

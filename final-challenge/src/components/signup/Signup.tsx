@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, provider } from "../../config/firebase-config";
 import {
   GoogleAuthProvider,
@@ -12,6 +12,7 @@ import InputCard from "../cards/input-card/InputCard";
 import google from "../../assets/google.svg";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +22,8 @@ const Signup = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("Registered!");
-        redirect("/");
+        alert("Register complete!")
+        navigate("/signin");
       })
       .catch((error) => {
         console.log("Failed to register", error.message);
@@ -33,6 +35,8 @@ const Signup = () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
         const user = result.user;
+        alert("Register complete!")
+        navigate("/");
       })
       .catch((error) => {
         console.log("Failed to sign in", error.message);

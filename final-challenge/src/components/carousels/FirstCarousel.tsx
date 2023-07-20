@@ -109,21 +109,22 @@ const FirstCarousel = () => {
           </SplideSlide>
         </Splide>
       </div>
-      {category.length === 0 ? (
-        <h1>No products avaliable!</h1>
-      ) : (
-        <Splide
-          options={{ arrows: false, pagination: false, gap: "1rem" }}
-          type="loop"
-          aria-label="Products"
-        >
-          {filteredCategory.map((product) => (
-            <SplideSlide>
-              <HorizProductCard id={product.id} productTitle={product.name} />
-            </SplideSlide>
-          ))}
-        </Splide>
-      )}
+
+      <Splide
+        options={{ arrows: false, pagination: false, gap: "1rem" }}
+        type="loop"
+        aria-label="Products"
+      >
+        {filteredCategory.map((product) => (
+          <SplideSlide>
+            <HorizProductCard
+              key={product.id}
+              id={product.id}
+              productTitle={product.name}
+            />
+          </SplideSlide>
+        ))}
+      </Splide>
     </>
   );
 };
