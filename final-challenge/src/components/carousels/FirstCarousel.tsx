@@ -116,7 +116,7 @@ const FirstCarousel = () => {
         aria-label="Products"
       >
         {filteredCategory.map((product) => (
-          <SplideSlide>
+          <SplideSlide key={product.id}>
             <HorizProductCard
               key={product.id}
               id={product.id}

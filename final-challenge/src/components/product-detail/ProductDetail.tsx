@@ -91,7 +91,7 @@ const ProductDetail = () => {
           <div className={classes.reviewSection}>
             <p>Reviews ({product?.reviews?.length})</p>
             {product?.reviews?.map((review: Review) => (
-              <div>
+              <div key={review.id}>
                 <ReviewsCard
                   key={review.id}
                   user={review.user}

@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import axios from "axios";
 
-import NavBar from "../navbar/NavBar";
 import CartItemCard from "../cards/cart-item-card/CartItemCard";
 import trashIcon from "../../assets/trash-2.svg";
+import arrowIcon from "../../assets/chevron-right.svg";
+import backIcon from "../../assets/chevron-left.svg";
+
+import classes from "./Cart.module.css";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   interface Review {
@@ -29,9 +32,7 @@ const Cart = () => {
 
   const [product, setProduct] = useState<Product[]>([]);
 
-  const { getItemQt, increaseCartQt } = useCart();
-  const quantity = getItemQt(product.id);
-  console.log(quantity);
+  const { getItemQt, cartQuantity, cleanCart } = useCart();
 
   const getData = async () => {
     try {
@@ -48,17 +49,53 @@ const Cart = () => {
     void getData();
   }, []);
 
+  const cartProducts = product.filter((product) => getItemQt(product.id) > 0);
+
+  const convertPrice = (price: string): number => {
+    return parseFloat(price.replace("$", "").replace(",", ""));
+  };
+
+  const totalPrice = (): number => {
+    let total = 0;
+    for (const product of cartProducts) {
+      const price = convertPrice(product.price);
+      const quantity = getItemQt(product.id);
+      total += price * quantity;
+    }
+    return total;
+  };
+
   return (
     <>
-      <NavBar icon={trashIcon} title="Shopping Cart" />
-      {product.map((product) => (
+      <div className={classes.navBar}>
+        <Link to={"/see-all"}>
+          <img src={backIcon} />
+        </Link>
+        <h1>Shopping Cart</h1>
+        <button onClick={cleanCart} className={classes.cleanCartButton}>
+          <img src={trashIcon} />
+        </button>
+      </div>
+      {cartProducts.map((product) => (
         <CartItemCard
+          key={product.id}
           name={product.name}
           price={product.price}
           id={product.id}
-          quantity={quantity}
+          quantity={getItemQt(product.id)}
         />
       ))}
+      <section className={classes.cartFooter}>
+        <div className={classes.cartFooterText}>
+          <p>Total {cartQuantity} items</p>
+          <em>
+            <p>R$ {totalPrice()}</p>
+          </em>
+        </div>
+        <button className={classes.checkoutButton}>
+          Proceed to Checkout <img src={arrowIcon} />
+        </button>
+      </section>
     </>
   );
 };

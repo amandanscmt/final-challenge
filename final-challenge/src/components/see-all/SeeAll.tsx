@@ -58,6 +58,7 @@ const SeeAll = () => {
       <div className={classes.allProductsSection}>
         {product.map((product) => (
           <SeeAllCard
+            key={product.id}
             id={product.id}
             name={product.name}
             price={product.price}

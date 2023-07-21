@@ -29,17 +29,7 @@ const BottomSheetFilter = () => {
 
   const [product, setProduct] = useState<Product[]>([]);
   const [category, setCategory] = useState("");
-
-  const maxRating = product.reduce((max, product) => {
-    return product.rating > max ? product.rating : max;
-  }, 0);
-  console.log(maxRating)
-
-  const maxPrice = product.reduce((max, product) => {
-    const price = parseFloat(product.price);
-    return price > max ? price : max
-  }, 0)
-  console.log(maxPrice)
+  const [sortby, setSortby] = useState('')
 
   const [open, setOpen] = useState(false);
 
@@ -59,13 +49,76 @@ const BottomSheetFilter = () => {
   }, []);
 
   const filterHandler = () => {
-    let filteredProducts = product;
-    filteredProducts = product.filter((product) => product.category === category);
-    
-    filteredProducts = product.filter((product) => product.rating === (maxRating));
-    
-    filteredProducts = product.filter((product) => parseFloat(product.price) === (maxPrice));
-    console.log(filteredProducts)
+    const filteredCategory = product.filter(
+      (product) => product.category === category
+    );
+    console.log(filteredCategory);
+
+    const sortbyPop: Product[] = product.sort((item1, item2) => {
+      if (item1.reviews > item2.reviews) {
+        return 1;
+      }
+      if (item1.reviews < item2.reviews) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(sortbyPop);
+
+    const sortbyReview: Product[] = product.sort((item1, item2) => {
+      if (item1.rating > item2.rating) {
+        return 1;
+      }
+      if (item1.rating < item2.rating) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(sortbyReview);
+
+    const sortbyOldest: Product[] = product.sort((item1, item2) => {
+      if (item1.created_at > item2.created_at) {
+        return 1;
+      }
+      if (item1.created_at < item2.created_at) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(sortbyOldest);
+
+    const sortbyNewest: Product[] = product.sort((item1, item2) => {
+      if (item1.created_at > item2.created_at) {
+        return -1;
+      }
+      if (item1.created_at < item2.created_at) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log(sortbyNewest);
+
+    const sortbyHighPrice: Product[] = product.sort((item1, item2) => {
+      if (item1.price.slice(2) > item2.price.slice(2)) {
+        return 1;
+      }
+      if (item1.price.slice(2) < item2.price.slice(2)) {
+        return -1;
+      }
+      return 0;
+    });
+    console.log(sortbyHighPrice);
+
+    const sortbyLowPrice: Product[] = product.sort((item1, item2) => {
+      if (item1.price > item2.price) {
+        return -1;
+      }
+      if (item1.price < item2.price) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log(sortbyLowPrice);
   };
 
   const onDismiss = () => {
@@ -155,7 +208,7 @@ const BottomSheetFilter = () => {
                 value="Popularity"
                 id="popularity"
                 name="filter"
-                onChange={(e) => (e.target.value)}
+                onChange={(e) => setSortby(e.target.value)}
               />
             </label>
             <label className={classes.radioPopularity}>
@@ -185,7 +238,7 @@ const BottomSheetFilter = () => {
                 value="High Price"
                 id="highprice"
                 name="filter"
-                onChange={(e) => (e.target.value)}
+                onChange={(e) => setSortby(e.target.value)}
               />
             </label>
             <label className={classes.radioPopularity}>
@@ -210,7 +263,9 @@ const BottomSheetFilter = () => {
             </label>
           </div>
           <span className={classes.applyFilterButton}>
-            <button onClick={filterHandler}>Apply filter</button>
+            <button type="submit" onClick={filterHandler}>
+              Apply filter
+            </button>
           </span>
         </div>
       </BottomSheet>
