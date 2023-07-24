@@ -93,3 +93,23 @@
   font-size: 1rem;
   font-weight: 400;
 }
+
+@media only screen and (min-width: 600px) {
+  .seeAllHeader {
+    width: 70%;
+    margin: 1rem auto;
+  }
+  .allProductsSection {
+    padding: 1.5rem 6rem 0 6rem;
+  }
+
+  .filterButtonContainer {
+    width: 65%;
+    margin: auto;
+  }
+
+  .bottomsheet {
+    width: 70%;
+    margin: 1rem auto;
+  }
+}

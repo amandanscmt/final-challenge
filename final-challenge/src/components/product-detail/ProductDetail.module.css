@@ -86,3 +86,42 @@
   background-color: var(--colors-default);
   color: var(--colors-primary);
 }
+
+@media only screen and (min-width: 600px) {
+  .productDetailSection {
+    margin: 1rem auto;
+  }
+  .tabBar {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .featuresTab {
+    width: 80%;
+    margin: 1rem auto;
+  }
+
+  .detailResponsive {
+    display: grid;
+    grid-template-columns: auto;
+    width: 80%;
+    margin: 1rem auto;
+    align-items: center;
+  }
+  .detailCarousel {
+    grid-column: 1 / 1;
+  }
+  .reviewSection {
+    grid-column: 2 / 2;
+  }
+  .moreProducts {
+    grid-column: 1 / span 2;
+    border-radius: 1rem;
+  }
+  .cartButton {
+    width: 50%;
+    margin: 1rem auto;
+  }
+}

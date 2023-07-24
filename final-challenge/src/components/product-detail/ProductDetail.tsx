@@ -31,7 +31,6 @@ interface Product {
 }
 
 const ProductDetail = () => {
-
   const [product, setProduct] = useState<Product[]>([]);
   const [addedToCart, setAddedToCart] = useState(false);
   const params = useParams<{ id: string }>();
@@ -42,7 +41,7 @@ const ProductDetail = () => {
     setTimeout(() => {
       setAddedToCart(false);
     }, 3000);
-  }
+  };
 
   const getData = async () => {
     try {
@@ -91,34 +90,35 @@ const ProductDetail = () => {
           Features
         </a>
       </span>
-      {active === "overview" && (
-        <>
-          <ProductDetailCarousel />
-          <div className={classes.reviewSection}>
-            <p>Reviews ({product?.reviews?.length})</p>
-            {product?.reviews?.map((review: Review) => (
-              <div key={review.id}>
-                <ReviewsCard
-                  key={review.id}
-                  user={review.user}
-                  description={review.description}
-                  rating={review.rating}
-                />
-              </div>
-            ))}
-            <section className={classes.moreProducts}>
-              <div className={classes.moreProductsBar}>
-                <p>Another products</p>
-                <Link to={"/see-all"}>See all</Link>
-              </div>
-              <div className={classes.moreProductsCarousel}>
-                <SecondCarousel />
-              </div>
-            </section>
+      <span className={classes.detailResponsive}>
+        {active === "overview" && (
+          <>
+            <span className={classes.detailCarousel}><ProductDetailCarousel /></span>
+            <div className={classes.reviewSection}>
+              <p>Reviews ({product?.reviews?.length})</p>
+              {product?.reviews?.map((review: Review) => (
+                <div key={review.id}>
+                  <ReviewsCard
+                    key={review.id}
+                    user={review.user}
+                    description={review.description}
+                    rating={review.rating}
+                  />
+                </div>
+              ))}
+            </div>
+        <section className={classes.moreProducts}>
+          <div className={classes.moreProductsBar}>
+            <p>Another products</p>
+            <Link to={"/see-all"}>See all</Link>
           </div>
-        </>
-      )}
-
+          <div className={classes.moreProductsCarousel}>
+            <SecondCarousel />
+          </div>
+        </section>
+          </>
+        )}
+      </span>
       {active === "features" && (
         <div className={classes.featuresTab}>
           <p>{product?.description}</p>
@@ -126,7 +126,10 @@ const ProductDetail = () => {
       )}
       <span className={classes.cartButtonSection}>
         <button
-          onClick={() => {increaseCartQt(product.id); cartMessage()}}
+          onClick={() => {
+            increaseCartQt(product.id);
+            cartMessage();
+          }}
           className={classes.cartButton}
         >
           {addedToCart ? "Added to cart!" : "Add to cart"}

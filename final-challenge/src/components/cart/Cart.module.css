@@ -38,3 +38,17 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media only screen and (min-width: 600px) {
+  .navBar {
+    width: 80%;
+    margin: 1rem auto;
+  }
+  .cartContent {
+    padding: 1.5rem 6rem 0 6rem;
+  }
+  .cartFooter {
+    width: 60%;
+    margin: 1rem auto;
+  }
+}

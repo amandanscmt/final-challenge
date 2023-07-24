@@ -96,12 +96,12 @@ const Signin = () => {
             />
             {passwordError && <p className={classes.passwordError}>{passwordError}</p>}
           </form>
-          <button onClick={signinEmailHandler}>Sign in</button>
+          <button className={classes.signinButton} onClick={signinEmailHandler}>Sign in</button>
           <button
             className={classes.googleButton}
             onClick={signinGoogleHandler}
           >
-            <img className={classes.googleIcon} src={google} />
+            <img className={classes.googleIcon} src={google} />            
           </button>
           <p>
             You don't have an account? <Link to={"/signup"}>Sign up!</Link>

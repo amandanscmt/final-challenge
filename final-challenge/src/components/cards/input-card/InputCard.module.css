@@ -24,3 +24,10 @@
   font-size: 1rem;
   color: var(--colors-white);
 }
+
+@media only screen and (min-width: 600px) {
+  .inputCard {
+    background-image: none;
+    background: linear-gradient(353deg, rgba(0,0,0,1) 5%, rgba(5,98,62,1) 44%, rgba(10,207,131,1) 74%, rgba(152,255,164,1) 100%);
+  }
+}

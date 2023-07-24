@@ -83,6 +83,7 @@ const Signup = () => {
   return (
     <InputCard>
       <div className={classes.signupInputField}>
+        <form>
         <input
           type="email"
           placeholder="Email"
@@ -99,7 +100,8 @@ const Signup = () => {
           className={passwordError ? classes.passwordInputError : ""}
         />
         {passwordError && <p className={classes.passwordError}>{passwordError}</p>}
-        <button onClick={signupEmailHandler}>Sign up</button>
+        </form>
+        <button className={classes.signupButton} onClick={signupEmailHandler}>Sign up</button>
         <button className={classes.googleButton} onClick={signinGoogleHandler}>
           <img className={classes.googleIcon} src={google} />
         </button>

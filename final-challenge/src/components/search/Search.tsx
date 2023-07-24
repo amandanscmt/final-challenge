@@ -32,8 +32,8 @@ const Search = () => {
 
   const [product, setProduct] = useState<Product[]>([]);
   const [search, setSearch] = useState("");
-  const searchInput = product.filter(
-    (product) => product.name.toLowerCase().includes(search.toLowerCase())
+  const searchInput = product.filter((product) =>
+    product.name.toLowerCase().includes(search.toLowerCase())
   );
 
   const getData = async () => {
@@ -64,29 +64,33 @@ const Search = () => {
         />
       </div>
       <p className={classes.title}>Popular products</p>
-      {searchInput.map((product) => (
-        <div className={classes.productCard} key={product.id}>
-          <img className={classes.productImg} src={productImg} />
-          <span className={classes.productText}>
-          <Link to={`/product-detail/${product.id}`}>
-            <p className={classes.productName}>{product.name}</p>
-        </Link>
-            <em><p>{product.price}</p></em>
-            <span className={classes.ratingSection}>
-              <div className={classes.ratingText}>
-                <p>
-                  <img src={ratingIcon} />
-                  {product.rating}
-                </p>
-                <p>{product?.reviews?.length} Reviews</p>
-              </div>
-              <div className={classes.moreIcon}>
-                <img src={moreIcon} />
-              </div>
+      <span className={classes.productSection}>
+        {searchInput.map((product) => (
+          <div className={classes.productCard} key={product.id}>
+            <img className={classes.productImg} src={productImg} />
+            <span className={classes.productText}>
+              <Link to={`/product-detail/${product.id}`}>
+                <p className={classes.productName}>{product.name}</p>
+              </Link>
+              <em>
+                <p>{product.price}</p>
+              </em>
+              <span className={classes.ratingSection}>
+                <div className={classes.ratingText}>
+                  <p>
+                    <img src={ratingIcon} />
+                    {product.rating}
+                  </p>
+                  <p>{product?.reviews?.length} Reviews</p>
+                </div>
+                <div className={classes.moreIcon}>
+                  <img src={moreIcon} />
+                </div>
+              </span>
             </span>
-          </span>
-        </div>
-      ))}
+          </div>
+        ))}
+      </span>
     </>
   );
 };

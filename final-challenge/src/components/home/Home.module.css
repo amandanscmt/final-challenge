@@ -100,3 +100,18 @@ h2 {
   color: var(--colors-grey-dark-1);
   font-weight: 400;
 }
+
+@media only screen and (min-width: 600px) {
+  .navBar {
+    width: 80%;
+    margin: 1rem auto;
+  }
+  .homeTitle {
+    width: 80%;
+    margin: auto;
+  }
+  .productSection {
+    padding: 1rem 6rem 0 6rem;
+    margin: auto;
+  }
+}
