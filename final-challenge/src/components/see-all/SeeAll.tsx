@@ -52,10 +52,6 @@ const SeeAll = () => {
     void getData();
   }, []);
 
-  const convertPrice = (price: string): number => {
-    return parseFloat(price.replace("$", "").replace(",", ""));
-  };
-
   const filterHandler = () => {
 
     let filteredCategory = [...product]
@@ -114,11 +110,11 @@ const SeeAll = () => {
     } else if (sortby === "High Price") {
       filteredProducts = filteredCategory.sort(
         (item1, item2) => {
-          if (convertPrice(item1.price.slice(1)) > convertPrice(item2.price.slice(1))) {
-            return 1;
-          }
-          if (convertPrice(item1.price.slice(1)) > convertPrice(item2.price.slice(1))) {
+          if (parseFloat(item1.price.slice(1)) > parseFloat(item2.price.slice(1))) {
             return -1;
+          }
+          if (parseFloat(item1.price.slice(1)) < parseFloat(item2.price.slice(1))) {
+            return 1;
           }
           return 0;
         }
@@ -127,11 +123,11 @@ const SeeAll = () => {
     } else if (sortby === "Low Price") {
      filteredProducts = filteredCategory.sort(
         (item1, item2) => {
-          if (item1.price > item2.price) {
-            return -1;
-          }
-          if (item1.price < item2.price) {
+          if (parseFloat(item1.price.slice(1)) > parseFloat(item2.price.slice(1))) {
             return 1;
+          }
+          if (parseFloat(item1.price.slice(1)) < parseFloat(item2.price.slice(1))) {
+            return -1;
           }
           return 0;
         }
