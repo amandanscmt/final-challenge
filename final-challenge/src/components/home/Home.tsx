@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../config/firebase-config";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,12 +8,13 @@ import "@splidejs/react-splide/css";
 import "../../index.css";
 
 import logo from "../../assets/logo.svg";
+import menu from "../../assets/menu-variant.svg";
+import icon from "../../assets/userpic.png";
 
 import FirstCarousel from "../carousels/FirstCarousel";
 import SecondCarousel from "../carousels/SecondCarousel";
 
 const Home: React.FC = () => {
-
   const navigate = useNavigate();
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -26,10 +27,32 @@ const Home: React.FC = () => {
     });
   }, []);
 
+  const logout = () => {
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      console.log(error.message)
+      // An error happened.
+    });
+  }
+
   return (
     <>
       <div className={classes.navBar}>
-        <img className={classes.logo} src={logo} /> <p>Audio</p>
+        <div className={classes.dropdown}>
+          <span>
+            <button className={classes.menu}>
+              <img src={menu} />
+            </button>
+          </span>
+          <div className={classes.dropdownContent}>
+            <button onClick={logout}>Log out</button>
+          </div>
+        </div>
+        <span className={classes.logoContainer}>
+          <img className={classes.logo} src={logo} /> <p>Audio</p>
+        </span>
+        <img className={classes.icon} src={icon} />
       </div>
       <div className={classes.homeTitle}>
         <h2>Hi, {auth.name}.</h2>

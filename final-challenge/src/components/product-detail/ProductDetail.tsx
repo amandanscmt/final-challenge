@@ -11,32 +11,38 @@ import SecondCarousel from "../carousels/SecondCarousel";
 import NavBar from "../navbar/NavBar";
 import { useCart } from "../context/CartContext";
 
-const ProductDetail = () => {
-  interface Review {
-    user: string;
-    description: string;
-    rating: number;
-    date: string;
-    id: number;
-  }
+interface Review {
+  user: string;
+  description: string;
+  rating: number;
+  date: string;
+  id: number;
+}
 
-  interface Product {
-    id: number;
-    rating: number;
-    price: string;
-    name: string;
-    description: string;
-    category: string;
-    created_at: string;
-    reviews: Review[];
-  }
+interface Product {
+  id: number;
+  rating: number;
+  price: string;
+  name: string;
+  description: string;
+  category: string;
+  created_at: string;
+  reviews: Review[];
+}
+
+const ProductDetail = () => {
 
   const [product, setProduct] = useState<Product[]>([]);
+  const [addedToCart, setAddedToCart] = useState(false);
   const params = useParams<{ id: string }>();
 
-  const { getItemQt, increaseCartQt } = useCart();
-  const quantity = getItemQt(product.id);
-  console.log(quantity);
+  const { increaseCartQt } = useCart();
+  const cartMessage = () => {
+    setAddedToCart(true);
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 3000);
+  }
 
   const getData = async () => {
     try {
@@ -120,10 +126,10 @@ const ProductDetail = () => {
       )}
       <span className={classes.cartButtonSection}>
         <button
-          onClick={() => increaseCartQt(product.id)}
+          onClick={() => {increaseCartQt(product.id); cartMessage()}}
           className={classes.cartButton}
         >
-          Add to cart
+          {addedToCart ? "Added to cart!" : "Add to cart"}
         </button>
       </span>
     </div>

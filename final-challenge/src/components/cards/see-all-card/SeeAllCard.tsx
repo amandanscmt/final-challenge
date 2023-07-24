@@ -31,7 +31,7 @@ const SeeAllCard = (props: Product) => {
         <Link to={`/product-detail/${props.id}`}>
       <h2>{props.name}</h2>
     </Link>
-      <p className={classes.productPrice}>{props.price}</p>
+      <em><p>{props.price}</p></em>
       <span className={classes.ratingSection}>
         <p className={classes.ratingNumber}>
           <img src={ratingIcon} /> {props.rating}

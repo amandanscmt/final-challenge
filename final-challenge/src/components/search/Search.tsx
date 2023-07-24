@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import classes from "./Search.module.css";
@@ -67,8 +68,10 @@ const Search = () => {
         <div className={classes.productCard} key={product.id}>
           <img className={classes.productImg} src={productImg} />
           <span className={classes.productText}>
-            <p>{product.name}</p>
-            <p>{product.price}</p>
+          <Link to={`/product-detail/${product.id}`}>
+            <p className={classes.productName}>{product.name}</p>
+        </Link>
+            <em><p>{product.price}</p></em>
             <span className={classes.ratingSection}>
               <div className={classes.ratingText}>
                 <p>

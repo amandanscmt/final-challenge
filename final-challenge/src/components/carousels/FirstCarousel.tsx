@@ -115,15 +115,22 @@ const FirstCarousel = () => {
         type="loop"
         aria-label="Products"
       >
-        {filteredCategory.map((product) => (
-          <SplideSlide key={product.id}>
-            <HorizProductCard
-              key={product.id}
-              id={product.id}
-              productTitle={product.name}
-            />
-          </SplideSlide>
-        ))}
+        {category !== "Headphones" && category !== "Headsets" ? (
+          <span className={classes.notAvaliable}>
+            <h1>Sorry!</h1>{" "}
+            <p>This category has no products avaliable at the moment.</p>
+          </span>
+        ) : (
+          filteredCategory.map((product) => (
+            <SplideSlide key={product.id}>
+              <HorizProductCard
+                key={product.id}
+                id={product.id}
+                productTitle={product.name}
+              />
+            </SplideSlide>
+          ))
+        )}
       </Splide>
     </>
   );

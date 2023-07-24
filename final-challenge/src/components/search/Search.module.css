@@ -33,6 +33,11 @@
   width: 100%;
 }
 
+.productName {
+  color: var(--colors-default);
+  font-weight: 400;
+}
+
 .ratingSection {
   display: flex;
   justify-content: space-between;

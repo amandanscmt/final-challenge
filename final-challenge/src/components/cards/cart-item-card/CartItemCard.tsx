@@ -17,19 +17,15 @@ const CartItemCard = (props: CartItemProps) => {
   const { removeFromCart, increaseCartQt, decreaseCartQt } = useCart();
 
   return (
-    <div>
-      <span className={classes.cartItemContainer}>
-        <div className={classes.cartItemImg}>
-          <img src={productImg} />
-        </div>
-        <span className={classes.cartItemInfo}>
-          <div className={classes.cartItemText}>
-            <p>{props.name}</p>
-            <em>
-              <p>{props.price}</p>
-            </em>
-          </div>
-          <div className={classes.cartItemButtons}>
+<>
+    <div className={classes.cartItemCard} key={props.id}>
+    <img className={classes.cartItemImg} src={productImg} />
+    <span className={classes.cartItemText}>
+      <p>{props.name}</p>
+      <em><p>{props.price}</p></em>
+      <span className={classes.buttonSection}>
+        <div className={classes.quantitySection}>
+        <div className={classes.cartItemButtons}>
             <button onClick={() => decreaseCartQt(props.id)}>
               <img src={minusIcon} />
             </button>
@@ -37,16 +33,20 @@ const CartItemCard = (props: CartItemProps) => {
             <button onClick={() => increaseCartQt(props.id)}>
               <img src={plusIcon} />
             </button>
-            <button
+        </div>
+        </div>
+        <div className={classes.moreIcon}>
+        <button
               onClick={() => removeFromCart(props.id)}
               className={classes.trashButton}
             >
               <img src={trashIcon} />
             </button>
-          </div>
-        </span>
+        </div>
       </span>
-    </div>
+    </span>
+  </div>
+    </>
   );
 };
 

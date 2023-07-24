@@ -76,25 +76,30 @@ const Cart = () => {
           <img src={trashIcon} />
         </button>
       </div>
-      {cartProducts.map((product) => (
-        <CartItemCard
-          key={product.id}
-          name={product.name}
-          price={product.price}
-          id={product.id}
-          quantity={getItemQt(product.id)}
-        />
-      ))}
-      <section className={classes.cartFooter}>
-        <div className={classes.cartFooterText}>
-          <p>Total {cartQuantity} items</p>
-          <em>
-            <p>R$ {totalPrice()}</p>
-          </em>
+      <section className={classes.cartContent}>
+        <div className={classes.productSection}>
+          {cartProducts.map((product) => (
+            <CartItemCard
+              key={product.id}
+              name={product.name}
+              price={product.price}
+              id={product.id}
+              quantity={getItemQt(product.id)}
+            />
+          ))}
         </div>
-        <button className={classes.checkoutButton}>
-          Proceed to Checkout <img src={arrowIcon} />
-        </button>
+
+        <section className={classes.cartFooter}>
+          <div className={classes.cartFooterText}>
+            <p>Total {cartQuantity} items</p>
+            <em>
+              <p>R$ {totalPrice()}</p>
+            </em>
+          </div>
+          <button className={classes.checkoutButton}>
+            Proceed to Checkout <img src={arrowIcon} />
+          </button>
+        </section>
       </section>
     </>
   );

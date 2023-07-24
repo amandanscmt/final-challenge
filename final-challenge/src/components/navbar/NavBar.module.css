@@ -8,3 +8,17 @@
 .navBar h1 {
   font-size: 1rem;
 }
+
+.cartSection {
+  display: flex;
+}
+
+.cartQuantity {
+  display: flex;
+  background-color: var(--colors-primary);
+  color: var(--colors-white);
+  border-radius: 1rem;
+  width: 1.7rem;
+  justify-content: center;
+  align-items: center;
+}

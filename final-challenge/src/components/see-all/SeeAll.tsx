@@ -298,7 +298,16 @@ const SeeAll = () => {
     </span>
       </div>
       <div className={classes.allProductsSection}>
-        {filteredProducts.map((product) => (
+        {category === "" && sortby === "" ? (product.map((product) => (
+          <SeeAllCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            rating={product.rating}
+            reviews={product.reviews}
+          />
+        ))) : filteredProducts.map((product) => (
           <SeeAllCard
             key={product.id}
             id={product.id}

@@ -1,6 +1,7 @@
 import classes from "./ReviewsCard.module.css";
 
 import userIcon from "../../../assets/userpic.png";
+import Star from "../Star";
 
 interface Review {
   user: string;
@@ -16,7 +17,7 @@ const ReviewsCard = (props: Review) => {
       </span>
       <span className={classes.userReview}>
         <p className={classes.userName}>{props.user}</p>
-        <p>{props.rating}</p>
+        <Star rating={props.rating} />
         <p className={classes.reviewDescription}>{props.description}</p>
       </span>
     </div>

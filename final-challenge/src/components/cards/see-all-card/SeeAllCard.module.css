@@ -16,10 +16,6 @@
   justify-content: center;
 }
 
-.productPrice {
-    font-weight: 700;
-}
-
 .ratingSection {
   width: 100%;
   display: flex;

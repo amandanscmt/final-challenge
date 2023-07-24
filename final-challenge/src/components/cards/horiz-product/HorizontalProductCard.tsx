@@ -15,7 +15,7 @@ const HorizProductCard = (props: ProductTitle) => {
     <Link to={`/product-detail/${props.id}`}>
       <div className={classes.horizCard}>
         <div className={classes.horizCardText}>
-          <h1>{props.productTitle}</h1>
+          <em><h1>{props.productTitle}</h1></em>
           <Link to={"/product-detail"}>Shop now <img src={arrow} /></Link>
         </div>
         <div className={classes.horizCardImg}>

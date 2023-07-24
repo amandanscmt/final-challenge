@@ -74,8 +74,15 @@
 .cartButtonSection {
   display: flex;
   margin: 1.5rem;
+  position: sticky;
+  bottom: 0;
 }
 
 .cartButton {
   margin-bottom: 1.5rem;
+}
+
+.cartButton:active {
+  background-color: var(--colors-default);
+  color: var(--colors-primary);
 }

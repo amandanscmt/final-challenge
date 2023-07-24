@@ -10,6 +10,18 @@
   color: var(--colors-white);
 }
 
+.emailInputError,
+.passwordInputError {
+  border-color: rgb(236, 95, 95);
+  background-color: rgb(255, 159, 159);
+}
+
+.emailError,
+.passwordError {
+  display: flex;
+  width: 90%;
+}
+
 .googleButton {
   display: flex;
   width: 3.5rem;

@@ -17,6 +17,13 @@
   margin: 0;
 }
 
+.cartContent {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .cartFooter {
   margin: 1rem;
 }
